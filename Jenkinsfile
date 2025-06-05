@@ -3,13 +3,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clone your repo
                 git url: 'https://github.com/singhravish486/jenkins-maven-demo.git', branch: 'main'
             }
         }
         stage('Build') {
             steps {
-                // Use Windows batch command to build
                 bat 'mvn clean package'
             }
         }
@@ -21,7 +19,6 @@ pipeline {
     }
     post {
         always {
-            // Archive JUnit test results
             junit '**/target/surefire-reports/*.xml'
         }
         success {
